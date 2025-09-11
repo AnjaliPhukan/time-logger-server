@@ -1,2 +1,5 @@
 # Ignore any certificates
 certs
+
+# Ignore builds
+bin

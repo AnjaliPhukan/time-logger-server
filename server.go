@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/tls"
 	"flag"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +14,7 @@ import (
 type LogEntry struct {
 	startTime time.Time
 	endTime   time.Time
+	note      string
 }
 
 func main() {
@@ -32,11 +34,31 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == http.MethodGet {
+			io.WriteString(w, "===== Time Logger API =====\n")
+			io.WriteString(w, "GET / - returns the Time Logger API instructions\n")
+			io.WriteString(w, "GET /health - returns the service health\n")
+			io.WriteString(w, "POST /log - adds a log entry, returns log id")
+		} else {
+			http.Error(w, "", http.StatusMethodNotAllowed)
+		}
+	})
+
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet {
 			http.Error(w, "", http.StatusMethodNotAllowed)
-		} else {
-			w.Write([]byte("Hello!!"))
+		}
+		w.Write([]byte("Server is functioning optimally."))
+	})
+
+	mux.HandleFunc("/logs", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodPost:
+			if r.Header.Get("Content-Type") != "application/json" {
+				http.Error(w, "", http.StatusUnsupportedMediaType)
+			}
+
 		}
 	})
 
