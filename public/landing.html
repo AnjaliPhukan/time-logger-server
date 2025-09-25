@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, height=device-height, initial-scale=1.0"
+        />
+        <title>Time Logger</title>
+        <link rel="stylesheet" href="/static/styles/styles.css" />
+    </head>
+    <body>
+        <header id="pg-header">
+            <h1>Time Logger Login</h1>
+        </header>
+        <main id="pg-main-content">
+            <form id="login-form" method="post" autocomplete="on">
+                <div>
+                    <label for="username-input">Username</label>
+                    <input
+                        id="username-input"
+                        type="text"
+                        name="username"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="password-input">Password</label>
+                    <input
+                        id="password-input"
+                        type="password"
+                        name="password"
+                        required
+                    />
+                </div>
+                <input id="submit-btn" type="submit" value="Login" />
+            </form>
+        </main>
+        <footer id="pg-footer"></footer>
+    </body>
+</html>

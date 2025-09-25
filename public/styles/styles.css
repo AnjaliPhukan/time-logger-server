@@ -1,0 +1,30 @@
+header > * {
+    text-align: center;
+}
+
+main#pg-main-content > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    padding-bottom: 10px;
+}
+
+form > div > * {
+    padding: 10px;
+    max-width: 300px;
+    margin: auto;
+}
+
+form > input#submit-btn {
+    min-width: 150px;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+}
